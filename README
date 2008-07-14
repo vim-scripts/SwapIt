@@ -1,0 +1,81 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=2294
+
+swapit.vim is a vim plugin designed to make repetitive changes easier.
+
+On a current word that is a member of a swap list use the
+incrementor/decrementor keys (:he ctrl-a,ctrl-x). The script
+will cycle through a list of related options.
+
+A quick tty example is here http://ttyshare.com/rec/michael/76068689/
+
+Swapit now offers omnicomplete based swapping on css files!
+Css example plugging into omnicomplete http://ttyshare.com/rec/michael/76409608/
+
+The repository is here http://github.com/mjbrownie/swapit/tree/master. Any list submissions would be appreciated. 
+
+The idea is to compile a list of common property swaps for various languages/frameworks 
+
+NOTE: This has been done before in a simpler vimscript#1676 script. This script differs in it's ability to handle phrase swapping eg 'int' to 'unsigned int'
+
+eg. 1. Boolean
+
+foo=true
+
+in normal mode, pressing ctrl-a on the t will make it
+
+foo=false
+
+eg. 2. Multi Word Swaps.
+
+Hello World! is a test multi word swap.
+
+on 'Hello World!' go select in visual (vi'<ctrl-a>) to get
+
+'GoodBye Cruel World!'
+
+eg 3. Defining custom swaps
+
+A custom list is defined as follows.
+
+:SwapList datatypes bool char int float double
+
+The first argument is the list name and following args
+are members of the list.
+
+if there is no match then the regular incrementor decrementor
+function will work on numbers
+
+At the bottom of the script I've added some generic stuff but
+
+You can create a custom swap file for file types at
+
+~/.vim/after/ftplugins/<filetype>_swapit.vim
+with custom execs eg.
+exec "SwapList function_scope private protected public"
+
+For this alpha version multi word swap list is a bit trickier
+to to define. You can add to the swap list directly using
+vimscript within a after/ftplugin/<ft>_swap.vim file
+
+ call extend(g:swap_lists, [{'name':'Multi Word Example',
+             \&#039options': ['swap with spaces',
+             \&#039swap with  @#$@# chars in it' ,
+             \&#039running out of ideas here...']}])
+
+Future versions will make this cleaner with a :Command
+
+Also if you have a spur of the moment Idea type
+:SwapIdea
+To get to the current filetypes swapit file
+
+Note: This alpha version doesnt create the directory structure
+
+To integrate with other incrementor scripts (such as
+speeddating.vim vimscript #2120  or monday.vim vimscript #1046), 
+:nmap <Plug>SwapItFallbackIncrement and <Plug>SwapItFallbackDecrement
+to the keys that should be invoked when swapit doesn't have a
+proper option. For example for speeddating.vim:
+
+nmap <Plug>SwapItFallbackIncrement <Plug>SpeedDatingUp
+nmap <Plug>SwapItFallbackDecrement <Plug>SpeedDatingDown
+
