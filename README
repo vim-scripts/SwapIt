@@ -15,7 +15,7 @@ The repository is here http://github.com/mjbrownie/swapit/tree/master. Any list 
 
 The idea is to compile a list of common property swaps for various languages/frameworks 
 
-NOTE: This has been done before in a simpler vimscript#1676 script. This script differs in it's ability to handle phrase swapping eg 'int' to 'unsigned int'
+NOTE: This has been done before in a simpler vimscript#1676 script. This script differs in it's ability to handle phrase swapping eg 'int' to 'unsigned int'. It is also FileType aware.
 
 eg. 1. Boolean
 
